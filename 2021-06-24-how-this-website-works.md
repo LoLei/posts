@@ -172,14 +172,14 @@ be pulled by Kubernetes, or other users.
 ## Deployment
 
 The main Kubernetes [deployment manifest](https://github.com/LoLei/homepage/blob/main/k8s/deployment.yaml)
-consists of a fairly standard Deployment, Service and Ingress setup. The more interesting parts out
+consists of a fairly standard Deployment, Service and Ingress setup. The more noteworthy parts out
 pointed out below.
 
 ### Secrets
 
 One interesting aspect is the usage of [sealed secrets](https://github.com/bitnami-labs/sealed-secrets).
 Since I wanted a way to also track my Kubernetes secrets with git, but storing them publicly would
-be insecure due to plainly visible base64 encoded secret values, I found sealed-secrets which
+be insecure due to plainly visible base64-encoded secret values, I found sealed-secrets which
 provides a solution that encrypts the secret values. These encrypted secrets can be pushed to a
 public repository. In the cluster they can be used as "recipes" to create real secrets, since the
 cluster-localized sealed-secrets controller has the key to decrypt and "unseal" the values.
@@ -236,3 +236,10 @@ spec:
                 port:
                   number: 80
 ```
+
+# Conclusion
+
+I hope this gives some insight into the inner-workings of this website and why I chose to build it.
+In the future it may be used to host more blog posts, however it may also be taken down temporarily
+in order to save hosting costs, because realistically, not many people are constantly looking at my
+content. At least not at the moment 😉.
