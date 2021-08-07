@@ -29,9 +29,7 @@ the other deployments it monitors, even combined at some points. This may not be
 even an issue on clusters with more resources, but since at this stage the nodes are very minimally
 outfitted, it presents a considerable downside, allowing less room for other deployments.
 
-TODO: Replace image
-![Alt text](https://raw.githubusercontent.com/LoLei/dotfiles/master/images/busyyy.png "Recent
-screenshot of my Grafana")
+![Screenshot 2021-08-06 at 18-03-31 Kubernetes Compute Resources Cluster - Grafana](https://user-images.githubusercontent.com/9076894/128595750-6f11b220-d7dd-4d92-b9bc-f821f5e95f0a.png)
 
 The above image shows a recent screenshot of my Grafana dashboard. The blue part is the
 kube-prometheus-stack namespace, including all of the components mentioned above.
