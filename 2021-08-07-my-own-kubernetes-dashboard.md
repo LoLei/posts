@@ -2,7 +2,8 @@
 
 I recently made my own dashboard displaying some information about my Kubernetes cluster. In this
 post I will gather some thoughts about the reasoning of why I built it, and some information about
-the technical details.
+the technical details. The dashboard is currently deployed at
+[k8s-dashboard.lolei.dev](https://k8s-dashboard.lolei.dev).
 
 ## Why - History
 
