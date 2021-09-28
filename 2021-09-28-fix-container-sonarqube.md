@@ -57,3 +57,9 @@ one, which has Java user woes as well, but triggers a different kind of bug. For
 many other potential solutions for the "This project is empty" problem can be found
 [here](https://community.sonarsource.com/t/this-project-is-empty/7961/4).
 
+## Addendum
+* I hope my SEO is good enough so search engines will display this post for people with relevant
+  interest.
+* I mentioned "Docker" in the title for this purpose, but it should be the same for any container
+  engine/runtime. I tested it with Podman as well.
+
