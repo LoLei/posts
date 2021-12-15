@@ -35,4 +35,4 @@ it's still not what I would prefer.
 The final straw was however a yet unexplained phenomenon that started happen one
 day out of the blue.
 
-TODO: Grafana screenshot.
+![Grafana](https://user-images.githubusercontent.com/9076894/146248943-944d853a-1503-4f5d-94ca-ceb0f160eb3f.jpg)
