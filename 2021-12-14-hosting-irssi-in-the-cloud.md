@@ -1,6 +1,7 @@
 # Hosting Irssi in the Cloud
 
-This post goes into the journey and reasons of why and how I am currently hosting the IRC client Irssi in my Kubernetes Cluster.
+This post goes into the journey and reasons of why and how I am currently
+hosting the IRC client Irssi in my Kubernetes Cluster.
 
 ## Permanently Connected
 
@@ -35,4 +36,25 @@ it's still not what I would prefer.
 The final straw was however a yet unexplained phenomenon that started happen one
 day out of the blue.
 
+#### Memory Leak
+
+As can be seen in the following screenshot of cluster resources over seven days,
+the Quassel deployment seemed to have a memory leak.
+
 ![Grafana](https://user-images.githubusercontent.com/9076894/146248943-944d853a-1503-4f5d-94ca-ceb0f160eb3f.jpg)
+
+The past four days show an accumulation of memory in the Quassel pod, right up
+until the entire node runs out of memory. This could be fixed by pod eviction or
+setting a memory limit, but that would only be a band-aid rather than a root
+cause analysis. Simultaneously, the CPU resources of cilium, the network
+driver, ramp up, which has to be related to the memory increase.
+
+I realized that I had a three year old image tag of Quassel deployed, but
+upgrading that did not help, alas.
+
+## Moving On / Combining the Best of Both Worlds
+
+In any case, this gave me a good excuse to move away from Quassel, in addition
+to the aforementioned reasons. Since Irssi has been my favorite client so far,
+the only disadvantages stemming from the Pi setup, I set out to deploy Irssi in
+Quassel's stead in my cluster.
