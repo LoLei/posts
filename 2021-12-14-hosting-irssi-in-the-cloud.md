@@ -57,4 +57,38 @@ upgrading that did not help, alas.
 In any case, this gave me a good excuse to move away from Quassel, in addition
 to the aforementioned reasons. Since Irssi has been my favorite client so far,
 the only disadvantages stemming from the Pi setup, I set out to deploy Irssi in
-Quassel's stead in my cluster.
+Quassel's stead to my cluster.
+
+In essence, I wanted to emulate the second setup I had going on the Pi, just
+inside a container. Fortunately there is an official [Irssi container image](https://hub.docker.com/_/irssi).
+I initially chucked that into a
+[Statefulset](https://github.com/LoLei/dotfiles/blob/master/.irssi/k8s/statefulset.yaml)
+Kubernetes resource (statefulset rather than deployment since arbitrary replicas
+don't make much sense), attached my configuration files in a persistent volume,
+and voilà, it's running again.
+
+### Security Context
+
+One thing to point out, I initially could not edit the and copy the config files
+to the volume due to permission errors. This was fixed by adding a
+`SecurityContext` to the pod spec:
+
+```yaml
+securityContext:
+  fsGroup: 1000
+```
+
+The `fsGroup` corresponds to the `user` user that is created in the container
+image.
+
+### Containerfile
+
+I based a custom [Containerfile](https://github.com/LoLei/dotfiles/blob/master/.irssi/k8s/Containerfile)
+(aka Dockerfile) off of the official Irssi one, since I needed to install GNU
+screen. This image also starts with a sleep endless loop by default, while Irssi
+can be started manually by attaching to it.  I haven't made my mind up if Irssi
+should be started automatically. In theory it might be beneficial since then on
+a crash, it could automatically reconnect, however I haven't set up the Irssi
+config to do that yet, also, the likelihood of this pod exiting is very slim. I
+might have said the same about the Quassel deployment, and would've been proven
+wrong, so I may still opt for that route in the future.
